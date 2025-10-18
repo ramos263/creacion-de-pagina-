@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="descripcion de tu pagina web">
+    <meta name="author" content="ramos263">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("TU_PUBLIC_KEY_AQUI"); // ← CAMBIA ESTO
+       })();
+    </script>
+    
+    <!-- ESTILOS COMPLETOS -->
+    <style>
+        /* DROPDOWN */
+        nav li {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+            z-index: 1000;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            padding: 1rem;
+            display: block;
+            transition: 0.3s;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .modal-content h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-content input,
+        .modal-content textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+        }
+
+        .modal-content input:focus,
+        .modal-content textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+        }
+
+        .modal-content button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .modal-content button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* MENSAJE */
+        .mensaje {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .mensaje.mostrar {
+            display: block;
+        }
+
+        /* PORTAFOLIO */
+        .portafolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .proyecto-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .proyecto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .proyecto-imagen {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .proyecto-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .proyecto-info {
+            padding: 1.5rem;
+        }
+
+        .proyecto-info h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .proyecto-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .proyecto-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .btn-demo {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .btn-demo:hover {
+            background-color: #45a049;
+        }
+
+        .video-demo {
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            border-radius: 12px;
+        }
+
+        .video-demo h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .video-placeholder iframe {
+            border-radius: 12px;
+        }
+
+        /* CARRUSEL DE IMÁGENES */
+        .carrusel-container {
+            margin: 3rem 0;
+        }
+
+        .carrusel-container h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .carrusel {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .carrusel-slide {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .carrusel-slide.active {
+            display: block;
+        }
+
+        .carrusel-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .carrusel-caption {
+            text-align: center;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-weight: bold;
+        }
+
+        .carrusel-btn {
+            display: none; 
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .carrusel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .carrusel-btn.prev {
+            left: 10px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .carrusel-btn.next {
+            right: 10px;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .carrusel-dots {
+            text-align: center;
+            padding: 1rem;
+            background-color: white;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background-color: #4CAF50;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* RESPONSIVE - OPTIMIZACIÓN MÓVIL */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .dropdown-menu {
+                position: relative;
+                top: 0;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+
+            main {
+                padding: 0 1rem;
+            }
+
+            .portafolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .carrusel-slide img {
+                height: 300px;
+            }
+
+            .carrusel-btn {
+                padding: 0.5rem;
+                font-size: 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 2rem 1rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav h1 {
+                font-size: 1.2rem;
+            }
+
+            .carrusel-slide img {
+                height: 200px;
+            }
+
+            .proyecto-imagen {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--contenido principal de la pagina-->
+    <!--header (encabezado)-->
+    <header>
+        <nav>
+            <h1>logo o nombre del sitio</h1>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                
+                <!-- SERVICIOS CON DROPDOWN -->
+                <li>
+                    <a onclick="toggleDropdown()">Servicios ▼</a>
+                    <div id="dropdown" class="dropdown-menu">
+                        <a onclick="abrirModal('diseno')">Diseño Web</a>
+                        <a onclick="abrirModal('logo')">Diseño de Logo</a>
+                        <a onclick="abrirModal('seo')">SEO y Posicionamiento</a>
+                        <a onclick="abrirModal('mantenimiento')">Mantenimiento</a>
+                    </div>
+                </li>
+
+                <!-- CONTACTO CON DROPDOWN -->
+                <li>
+                    <a onclick="toggleDropdownContacto()">Contacto ▼</a>
+                    <div id="dropdown-contacto" class="dropdown-menu">
+                        <a href="https://wa.me/1234567890" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                        <a href="https://facebook.com/tupagina" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            Facebook
+                        </a>
+                        <a href="https://instagram.com/tupagina" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            Instagram
+                        </a>
+                        
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MODAL PARA DISEÑO WEB -->
+    <div id="modal-diseno" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModal('diseno')">&times;</span>
+            <h3>Solicitar Diseño Web</h3>
+            <form onsubmit="enviarFormulario(event, 'diseno')">
+                <input type="text" name="nombre" placeholder="Tu nombre" required>
+                <input type="tel" name="telefono" placeholder="Tu teléfono">
+                <textarea name="mensaje" placeholder="Describe lo que necesitas para tu sitio web" rows="5" required></textarea>
+                <input type="text" name="presupuesto" placeholder="¿Cuál es tu presupuesto?">
+                <button type="submit">Enviar solicitud</button>
+            </form>
+            <div class="mensaje"></div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA LOGO -->
+    <div id="modal-logo" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModal('logo')">&times;</span>
+            <h3>Solicitar Diseño de Logo</h3>
+            <form onsubmit="enviarFormulario(event, 'logo')">
+                <input type="text" name="nombre" placeholder="Tu nombre" required>
+                <input type="text" name="empresa" placeholder="Nombre de tu empresa">
+                <textarea name="mensaje" placeholder="Describe la idea de tu logo" rows="5" required></textarea>
+                <input type="text" name="presupuesto" placeholder="¿Cuál es tu presupuesto?">
+                <button type="submit">Enviar solicitud</button>
+            </form>
+            <div class="mensaje"></div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA SEO -->
+    <div id="modal-seo" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModal('seo')">&times;</span>
+            <h3>Solicitar SEO y Posicionamiento</h3>
+            <form onsubmit="enviarFormulario(event, 'seo')">
+                <input type="text" name="nombre" placeholder="Tu nombre" required>
+                <input type="url" name="sitio_web" placeholder="URL de tu sitio web">
+                <textarea name="mensaje" placeholder="¿Cuáles son tus objetivos SEO?" rows="5" required></textarea>
+                <button type="submit">Enviar solicitud</button>
+            </form>
+            <div class="mensaje"></div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA MANTENIMIENTO -->
+    <div id="modal-mantenimiento" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModal('mantenimiento')">&times;</span>
+            <h3>Solicitar Mantenimiento</h3>
+            <form onsubmit="enviarFormulario(event, 'mantenimiento')">
+                <input type="text" name="nombre" placeholder="Tu nombre" required>
+                <input type="url" name="sitio_web" placeholder="URL de tu sitio web">
+                <textarea name="mensaje" placeholder="¿Qué necesitas mantener o actualizar?" rows="5" required></textarea>
+                <button type="submit">Enviar solicitud</button>
+            </form>
+            <div class="mensaje"></div>
+        </div>
+    </div>
+
+    <!--main (contenido principal)-->
+    <main>
+        <!--seccion 1-->
+        <section id="inicio">
+            <h2>Bienvenido a Mi Portafolio</h2>
+            <p>Soy <strong>Ramos263</strong>, desarrollador web especializado en crear páginas profesionales y funcionales para negocios.</p>
+            <p>¿Necesitas una página web para tu negocio? Contáctame y transformo tu idea en realidad.</p>
+            
+            <!-- CARRUSEL DE IMÁGENES -->
+            <div class="carrusel-container
+                <div class="carrusel">
+                    <div class="carrusel-slide active">
+                        <img src="img/1.jpeg" alt="Vista Desktop">
+                        <p class="carrusel-caption">Vista en Desktop - Diseño profesional</p>
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/2.jpeg" alt="Vista Móvil">
+                        <p class="carrusel-caption">Vista en Móvil - Responsive</p>
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/3.jpeg" alt="Menú Dropdown">
+                        <p class="carrusel-caption">Menú Dropdown Interactivo</p>
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/4.jpeg" alt="Formularios">
+                        <p class="carrusel-caption">Formularios Funcionales</p>
+                    </div>
+                    
+                    <!-- Botones de navegación -->
+                    <button class="carrusel-btn prev" onclick="cambiarSlide(-1)">&#10094;</button>
+                    <button class="carrusel-btn next" onclick="cambiarSlide(1)">&#10095;</button>
+                    
+                    <!-- Indicadores -->
+                    <div class="carrusel-dots">
+                        <span class="dot active" onclick="irASlide(0)"></span>
+                        <span class="dot" onclick="irASlide(1)"></span>
+                        <span class="dot" onclick="irASlide(2)"></span>
+                        <span class="dot" onclick="irASlide(3)"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--seccion 2 - PORTAFOLIO-->
+        <section id="portafolio">
+            <h2>Mis Trabajos</h2>
+            <p>Aquí puedes ver algunos ejemplos de páginas web que he creado:</p>
+            
+            <div class="portafolio-grid">
+                <!-- PROYECTO 1 -->
+                <div class="proyecto-card">
+                    <div class="proyecto-imagen">
+                        <img src="img/demo1.jpg" alt="Landing Page de Servicios">
+                    </div>
+                    <div class="proyecto-info">
+                        <h3>Landing Page de Servicios</h3>
+                        <p>Página con menú dropdown, modales interactivos y formularios funcionales.</p>
+                        <div class="proyecto-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <a href="#" class="btn-demo">Ver Demo</a>
+                    </div>
+                </div>
+
+                <!-- PROYECTO 2 (Placeholder para futuro) -->
+                <div class="proyecto-card">
+                    <div class="proyecto-imagen">
+                        <img src="img/demo2.jpg" alt="Página de Restaurante">
+                    </div>
+                    <div class="proyecto-info">
+                        <h3>Página de Restaurante</h3>
+                        <p>Diseño moderno con menú digital, galería de platos y sistema de reservas.</p>
+                        <div class="proyecto-tags">
+                            <span class="tag">Responsive</span>
+                            <span class="tag">SEO</span>
+                            <span class="tag">Formularios</span>
+                        </div>
+                        <a href="#" class="btn-demo">Próximamente</a>
+                    </div>
+                </div>
+
+                <!-- PROYECTO 3 (Placeholder para futuro) -->
+                <div class="proyecto-card">
+                    <div class="proyecto-imagen">
+                        <img src="img/im.demo" alt="Portfolio Personal">
+                    </div>
+                    <div class="proyecto-info">
+                        <h3>Portfolio Personal</h3>
+                        <p>Sitio elegante para mostrar trabajos creativos con galería interactiva.</p>
+                        <div class="proyecto-tags">
+                            <span class="tag">Moderno</span>
+                            <span class="tag">Animaciones</span>
+                            <span class="tag">Galería</span>
+                        </div>
+                        <a href="#" class="btn-demo">Próximamente</a>
+                    </div>
+                </div>
+            </div>
+
+            
+            </div>
+        </section>
+    </main>
+
+    <!--footer (pie de la pagina)-->
+    <footer>
+        <p>&copy; 2025 ramos263. todos los derechos de autor reservados.</p>
+    </footer>
+
+    <!--vinculacion de script-->
+    <script>
+        // TOGGLE DROPDOWN
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown');
+            dropdown.classList.toggle('active');
+            
+            // Cerrar dropdown de contacto si está abierto
+            const dropdownContacto = document.getElementById('dropdown-contacto');
+            if (dropdownContacto) dropdownContacto.classList.remove('active');
+        }
+
+        // TOGGLE DROPDOWN CONTACTO
+        function toggleDropdownContacto() {
+            const dropdown = document.getElementById('dropdown-contacto');
+            dropdown.classList.toggle('active');
+            
+            // Cerrar dropdown de servicios si está abierto
+            const dropdownServicios = document.getElementById('dropdown');
+            if (dropdownServicios) dropdownServicios.classList.remove('active');
+        }
+
+        // CERRAR DROPDOWN AL HACER CLIC FUERA
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('a')) {
+                const dropdown = document.getElementById('dropdown');
+                if (dropdown && dropdown.classList.contains('active')) {
+                    dropdown.classList.remove('active');
+                }
+            }
+        });
+
+        // ABRIR MODAL
+        function abrirModal(servicio) {
+            const modal = document.getElementById(`modal-${servicio}`);
+            modal.classList.add('active');
+            
+            // Cerrar dropdown
+            const dropdown = document.getElementById('dropdown');
+            dropdown.classList.remove('active');
+        }
+
+        // CERRAR MODAL
+        function cerrarModal(servicio) {
+            const modal = document.getElementById(`modal-${servicio}`);
+            modal.classList.remove('active');
+        }
+
+        // CERRAR MODAL AL HACER CLIC FUERA
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+
+        // ENVIAR FORMULARIO CON EMAILJS
+        function enviarFormulario(event, servicio) {
+            event.preventDefault();
+
+            const modal = document.getElementById(`modal-${servicio}`);
+            const form = modal.querySelector('form');
+            const mensaje = modal.querySelector('.mensaje');
+
+            // Obtener datos del formulario usando FormData
+            const formData = new FormData(form);
+            const templateParams = {
+                servicio: servicio.toUpperCase(),
+                nombre: formData.get('nombre'),
+                email: formData.get('email'),
+                telefono: formData.get('telefono') || 'No proporcionado',
+                empresa: formData.get('empresa') || 'No proporcionado',
+                sitio_web: formData.get('sitio_web') || 'No proporcionado',
+                asunto: formData.get('asunto') || 'Contacto general',
+                presupuesto: formData.get('presupuesto') || 'No especificado',
+                mensaje: formData.get('mensaje')
+            };
+
+          
+        }
+        
+        // CARRUSEL DE IMÁGENES
+        let slideActual = 0;
+        let intervaloCarrusel;
+
+        // Mostrar slide específico
+        function mostrarSlide(n) {
+            const slides = document.querySelectorAll('.carrusel-slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            if (n >= slides.length) { slideActual = 0; }
+            if (n < 0) { slideActual = slides.length - 1; }
+            
+            // Ocultar todos los slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Mostrar slide actual
+            slides[slideActual].classList.add('active');
+            dots[slideActual].classList.add('active');
+        }
+
+        // Cambiar slide (botones prev/next)
+        function cambiarSlide(n) {
+            slideActual += n;
+            mostrarSlide(slideActual);
+            reiniciarIntervalo();
+       
+        }
+
+        // Ir a slide específico (dots)
+        function irASlide(n) {
+            slideActual = n;
+            mostrarSlide(slideActual);
+            reiniciarIntervalo();
+        }
+
+        // Cambio automático cada 5 segundos
+        function iniciarCarrusel() {
+            intervaloCarrusel = setInterval(() => {
+                slideActual++;
+                mostrarSlide(slideActual);
+            }, 5000); // Cambia cada 5 segundos
+        }
+
+        // Reiniciar intervalo al hacer clic manual
+        function reiniciarIntervalo() {
+            clearInterval(intervaloCarrusel);
+            iniciarCarrusel();
+        }
+
+        // Iniciar carrusel automático al cargar la página
+        window.addEventListener('load', () => {
+            mostrarSlide(slideActual);
+            iniciarCarrusel();
+        });
+    </script>
+</body>
+</html
