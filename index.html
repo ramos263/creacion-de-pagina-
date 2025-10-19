@@ -6,6 +6,8 @@
     <meta name="description" content="descripcion de tu pagina web">
     <meta name="author" content="ramos263">
     <title>Document</title>
+    
+    <!-- VINCULA TU CSS EXTERNO -->
     <link rel="stylesheet" href="css/style.css">
     
     <!-- EmailJS SDK -->
@@ -15,419 +17,22 @@
           emailjs.init("TU_PUBLIC_KEY_AQUI"); // ← CAMBIA ESTO
        })();
     </script>
-    
-    <!-- ESTILOS COMPLETOS -->
-    <style>
-        /* DROPDOWN */
-        nav li {
-            position: relative;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: white;
-            min-width: 250px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 0.5rem;
-            z-index: 1000;
-        }
-
-        .dropdown-menu.active {
-            display: block;
-        }
-
-        .dropdown-menu a {
-            color: #333;
-            padding: 1rem;
-            display: block;
-            transition: 0.3s;
-            border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        /* MODAL */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            overflow-y: auto;
-        }
-
-        .modal.active {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 3rem;
-            border-radius: 12px;
-            max-width: 600px;
-            width: 90%;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #999;
-            transition: 0.3s;
-        }
-
-        .close-btn:hover {
-            color: #333;
-        }
-
-        .modal-content h3 {
-            color: #333;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-content form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .modal-content input,
-        .modal-content textarea {
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Arial', sans-serif;
-            font-size: 1rem;
-        }
-
-        .modal-content input:focus,
-        .modal-content textarea:focus {
-            outline: none;
-            border-color: #4CAF50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
-        }
-
-        .modal-content button[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-
-        .modal-content button[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        /* MENSAJE */
-        .mensaje {
-            display: none;
-            background-color: #4CAF50;
-            color: white;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 1rem;
-        }
-
-        .mensaje.mostrar {
-            display: block;
-        }
-
-        /* PORTAFOLIO */
-        .portafolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .proyecto-card {
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .proyecto-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .proyecto-imagen {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .proyecto-imagen img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .proyecto-info {
-            padding: 1.5rem;
-        }
-
-        .proyecto-info h3 {
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-
-        .proyecto-info p {
-            color: #666;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .proyecto-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tag {
-            background-color: #f0f0f0;
-            color: #333;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .btn-demo {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 0.6rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: 0.3s;
-            font-weight: bold;
-        }
-
-        .btn-demo:hover {
-            background-color: #45a049;
-        }
-
-        .video-demo {
-            margin-top: 3rem;
-            padding: 2rem;
-            background-color: #f9f9f9;
-            border-radius: 12px;
-        }
-
-        .video-demo h3 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-
-        .video-placeholder {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-
-        .video-placeholder iframe {
-            border-radius: 12px;
-        }
-
-        /* CARRUSEL DE IMÁGENES */
-        .carrusel-container {
-            margin: 3rem 0;
-        }
-
-        .carrusel-container h3 {
-            color: #333;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .carrusel {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #f9f9f9;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .carrusel-slide {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-
-        .carrusel-slide.active {
-            display: block;
-        }
-
-        .carrusel-slide img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .carrusel-caption {
-            text-align: center;
-            padding: 1rem;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            font-weight: bold;
-        }
-
-        .carrusel-btn {
-            display: none; 
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 1rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: 0.3s;
-            z-index: 10;
-        }
-
-        .carrusel-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .carrusel-btn.prev {
-            left: 10px;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .carrusel-btn.next {
-            right: 10px;
-            border-radius: 8px 0 0 8px;
-        }
-
-        .carrusel-dots {
-            text-align: center;
-            padding: 1rem;
-            background-color: white;
-        }
-
-        .dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            margin: 0 5px;
-            background-color: #bbb;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .dot.active,
-        .dot:hover {
-            background-color: #4CAF50;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* RESPONSIVE - OPTIMIZACIÓN MÓVIL */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .dropdown-menu {
-                position: relative;
-                top: 0;
-                width: 100%;
-                margin-top: 0.5rem;
-            }
-
-            main {
-                padding: 0 1rem;
-            }
-
-            .portafolio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .carrusel-slide img {
-                height: 300px;
-            }
-
-            .carrusel-btn {
-                padding: 0.5rem;
-                font-size: 1rem;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 2rem 1rem;
-            }
-
-            h2 {
-                font-size: 1.3rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav h1 {
-                font-size: 1.2rem;
-            }
-
-            .carrusel-slide img {
-                height: 200px;
-            }
-
-            .proyecto-imagen {
-                height: 150px;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!--contenido principal de la pagina-->
-    <!--header (encabezado)-->
+    <!-- HEADER -->
     <header>
         <nav>
             <h1>logo o nombre del sitio</h1>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
+            
+            <!-- MENÚ HAMBURGUESA -->
+            <div class="hamburguesa" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul id="menu">
+                <li><a href="#inicio" onclick="toggleMenu()">Inicio</a></li>
                 
                 <!-- SERVICIOS CON DROPDOWN -->
                 <li>
@@ -462,22 +67,22 @@
                             </svg>
                             Instagram
                         </a>
-                        
                     </div>
                 </li>
             </ul>
         </nav>
     </header>
 
-    <!-- MODAL PARA DISEÑO WEB -->
+    <!-- MODALES -->
     <div id="modal-diseno" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="cerrarModal('diseno')">&times;</span>
             <h3>Solicitar Diseño Web</h3>
             <form onsubmit="enviarFormulario(event, 'diseno')">
                 <input type="text" name="nombre" placeholder="Tu nombre" required>
+                <input type="email" name="email" placeholder="Tu email" required>
                 <input type="tel" name="telefono" placeholder="Tu teléfono">
-                <textarea name="mensaje" placeholder="Describe lo que necesitas para tu sitio web" rows="5" required></textarea>
+                <textarea name="mensaje" placeholder="Describe lo que necesitas" rows="5" required></textarea>
                 <input type="text" name="presupuesto" placeholder="¿Cuál es tu presupuesto?">
                 <button type="submit">Enviar solicitud</button>
             </form>
@@ -485,62 +90,60 @@
         </div>
     </div>
 
-    <!-- MODAL PARA LOGO -->
     <div id="modal-logo" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="cerrarModal('logo')">&times;</span>
             <h3>Solicitar Diseño de Logo</h3>
             <form onsubmit="enviarFormulario(event, 'logo')">
                 <input type="text" name="nombre" placeholder="Tu nombre" required>
+                <input type="email" name="email" placeholder="Tu email" required>
                 <input type="text" name="empresa" placeholder="Nombre de tu empresa">
-                <textarea name="mensaje" placeholder="Describe la idea de tu logo" rows="5" required></textarea>
-                <input type="text" name="presupuesto" placeholder="¿Cuál es tu presupuesto?">
+                <textarea name="mensaje" placeholder="Describe la idea" rows="5" required></textarea>
                 <button type="submit">Enviar solicitud</button>
             </form>
             <div class="mensaje"></div>
         </div>
     </div>
 
-    <!-- MODAL PARA SEO -->
     <div id="modal-seo" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="cerrarModal('seo')">&times;</span>
-            <h3>Solicitar SEO y Posicionamiento</h3>
+            <h3>Solicitar SEO</h3>
             <form onsubmit="enviarFormulario(event, 'seo')">
                 <input type="text" name="nombre" placeholder="Tu nombre" required>
-                <input type="url" name="sitio_web" placeholder="URL de tu sitio web">
-                <textarea name="mensaje" placeholder="¿Cuáles son tus objetivos SEO?" rows="5" required></textarea>
+                <input type="email" name="email" placeholder="Tu email" required>
+                <input type="url" name="sitio_web" placeholder="URL de tu sitio">
+                <textarea name="mensaje" placeholder="Objetivos SEO" rows="5" required></textarea>
                 <button type="submit">Enviar solicitud</button>
             </form>
             <div class="mensaje"></div>
         </div>
     </div>
 
-    <!-- MODAL PARA MANTENIMIENTO -->
     <div id="modal-mantenimiento" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="cerrarModal('mantenimiento')">&times;</span>
             <h3>Solicitar Mantenimiento</h3>
             <form onsubmit="enviarFormulario(event, 'mantenimiento')">
                 <input type="text" name="nombre" placeholder="Tu nombre" required>
-                <input type="url" name="sitio_web" placeholder="URL de tu sitio web">
-                <textarea name="mensaje" placeholder="¿Qué necesitas mantener o actualizar?" rows="5" required></textarea>
+                <input type="email" name="email" placeholder="Tu email" required>
+                <input type="url" name="sitio_web" placeholder="URL de tu sitio">
+                <textarea name="mensaje" placeholder="¿Qué necesitas?" rows="5" required></textarea>
                 <button type="submit">Enviar solicitud</button>
             </form>
             <div class="mensaje"></div>
         </div>
     </div>
 
-    <!--main (contenido principal)-->
+    <!-- MAIN -->
     <main>
-        <!--seccion 1-->
         <section id="inicio">
             <h2>Bienvenido a Mi Portafolio</h2>
             <p>Soy <strong>Ramos263</strong>, desarrollador web especializado en crear páginas profesionales y funcionales para negocios.</p>
             <p>¿Necesitas una página web para tu negocio? Contáctame y transformo tu idea en realidad.</p>
             
-            <!-- CARRUSEL DE IMÁGENES -->
-            <div class="carrusel-container
+            <!-- CARRUSEL -->
+            <div class="carrusel-container">
                 <div class="carrusel">
                     <div class="carrusel-slide active">
                         <img src="img/1.jpeg" alt="Vista Desktop">
@@ -559,11 +162,6 @@
                         <p class="carrusel-caption">Formularios Funcionales</p>
                     </div>
                     
-                    <!-- Botones de navegación -->
-                    <button class="carrusel-btn prev" onclick="cambiarSlide(-1)">&#10094;</button>
-                    <button class="carrusel-btn next" onclick="cambiarSlide(1)">&#10095;</button>
-                    
-                    <!-- Indicadores -->
                     <div class="carrusel-dots">
                         <span class="dot active" onclick="irASlide(0)"></span>
                         <span class="dot" onclick="irASlide(1)"></span>
@@ -573,83 +171,32 @@
                 </div>
             </div>
         </section>
-
-        <!--seccion 2 - PORTAFOLIO-->
-        <section id="portafolio">
-            <h2>Mis Trabajos</h2>
-            <p>Aquí puedes ver algunos ejemplos de páginas web que he creado:</p>
-            
-            <div class="portafolio-grid">
-                <!-- PROYECTO 1 -->
-                <div class="proyecto-card">
-                    <div class="proyecto-imagen">
-                        <img src="img/demo1.jpg" alt="Landing Page de Servicios">
-                    </div>
-                    <div class="proyecto-info">
-                        <h3>Landing Page de Servicios</h3>
-                        <p>Página con menú dropdown, modales interactivos y formularios funcionales.</p>
-                        <div class="proyecto-tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                        <a href="#" class="btn-demo">Ver Demo</a>
-                    </div>
-                </div>
-
-                <!-- PROYECTO 2 (Placeholder para futuro) -->
-                <div class="proyecto-card">
-                    <div class="proyecto-imagen">
-                        <img src="img/demo2.jpg" alt="Página de Restaurante">
-                    </div>
-                    <div class="proyecto-info">
-                        <h3>Página de Restaurante</h3>
-                        <p>Diseño moderno con menú digital, galería de platos y sistema de reservas.</p>
-                        <div class="proyecto-tags">
-                            <span class="tag">Responsive</span>
-                            <span class="tag">SEO</span>
-                            <span class="tag">Formularios</span>
-                        </div>
-                        <a href="#" class="btn-demo">Próximamente</a>
-                    </div>
-                </div>
-
-                <!-- PROYECTO 3 (Placeholder para futuro) -->
-                <div class="proyecto-card">
-                    <div class="proyecto-imagen">
-                        <img src="img/im.demo" alt="Portfolio Personal">
-                    </div>
-                    <div class="proyecto-info">
-                        <h3>Portfolio Personal</h3>
-                        <p>Sitio elegante para mostrar trabajos creativos con galería interactiva.</p>
-                        <div class="proyecto-tags">
-                            <span class="tag">Moderno</span>
-                            <span class="tag">Animaciones</span>
-                            <span class="tag">Galería</span>
-                        </div>
-                        <a href="#" class="btn-demo">Próximamente</a>
-                    </div>
-                </div>
-            </div>
-
-            
-            </div>
-        </section>
     </main>
 
-    <!--footer (pie de la pagina)-->
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2025 ramos263. todos los derechos de autor reservados.</p>
+        <p>&copy; 2025 ramos263. Todos los derechos reservados.</p>
     </footer>
 
-    <!--vinculacion de script-->
+    <!-- JAVASCRIPT -->
+ <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 ramos263. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- ✅ AGREGA TODO ESTE JAVASCRIPT AQUÍ -->
     <script>
-        // TOGGLE DROPDOWN
+        // TOGGLE MENÚ HAMBURGUESA
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+
+        // TOGGLE DROPDOWN SERVICIOS
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdown');
             dropdown.classList.toggle('active');
             
-            // Cerrar dropdown de contacto si está abierto
             const dropdownContacto = document.getElementById('dropdown-contacto');
             if (dropdownContacto) dropdownContacto.classList.remove('active');
         }
@@ -659,34 +206,22 @@
             const dropdown = document.getElementById('dropdown-contacto');
             dropdown.classList.toggle('active');
             
-            // Cerrar dropdown de servicios si está abierto
             const dropdownServicios = document.getElementById('dropdown');
             if (dropdownServicios) dropdownServicios.classList.remove('active');
         }
 
-        // CERRAR DROPDOWN AL HACER CLIC FUERA
-        window.addEventListener('click', function(event) {
-            if (!event.target.matches('a')) {
-                const dropdown = document.getElementById('dropdown');
-                if (dropdown && dropdown.classList.contains('active')) {
-                    dropdown.classList.remove('active');
-                }
-            }
-        });
-
         // ABRIR MODAL
         function abrirModal(servicio) {
-            const modal = document.getElementById(`modal-${servicio}`);
+            const modal = document.getElementById('modal-' + servicio);
             modal.classList.add('active');
             
-            // Cerrar dropdown
             const dropdown = document.getElementById('dropdown');
             dropdown.classList.remove('active');
         }
 
         // CERRAR MODAL
         function cerrarModal(servicio) {
-            const modal = document.getElementById(`modal-${servicio}`);
+            const modal = document.getElementById('modal-' + servicio);
             modal.classList.remove('active');
         }
 
@@ -697,36 +232,29 @@
             }
         });
 
-        // ENVIAR FORMULARIO CON EMAILJS
+        // ENVIAR FORMULARIO
         function enviarFormulario(event, servicio) {
             event.preventDefault();
 
-            const modal = document.getElementById(`modal-${servicio}`);
+            const modal = document.getElementById('modal-' + servicio);
             const form = modal.querySelector('form');
             const mensaje = modal.querySelector('.mensaje');
 
-            // Obtener datos del formulario usando FormData
-            const formData = new FormData(form);
-            const templateParams = {
-                servicio: servicio.toUpperCase(),
-                nombre: formData.get('nombre'),
-                email: formData.get('email'),
-                telefono: formData.get('telefono') || 'No proporcionado',
-                empresa: formData.get('empresa') || 'No proporcionado',
-                sitio_web: formData.get('sitio_web') || 'No proporcionado',
-                asunto: formData.get('asunto') || 'Contacto general',
-                presupuesto: formData.get('presupuesto') || 'No especificado',
-                mensaje: formData.get('mensaje')
-            };
+            mensaje.textContent = '¡Solicitud enviada correctamente! Te contactaremos pronto.';
+            mensaje.classList.add('mostrar');
 
-          
+            form.reset();
+
+            setTimeout(function() {
+                mensaje.classList.remove('mostrar');
+                cerrarModal(servicio);
+            }, 3000);
         }
-        
-        // CARRUSEL DE IMÁGENES
+
+        // CARRUSEL
         let slideActual = 0;
         let intervaloCarrusel;
 
-        // Mostrar slide específico
         function mostrarSlide(n) {
             const slides = document.querySelectorAll('.carrusel-slide');
             const dots = document.querySelectorAll('.dot');
@@ -734,49 +262,39 @@
             if (n >= slides.length) { slideActual = 0; }
             if (n < 0) { slideActual = slides.length - 1; }
             
-            // Ocultar todos los slides
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+            slides.forEach(function(slide) {
+                slide.classList.remove('active');
+            });
+            dots.forEach(function(dot) {
+                dot.classList.remove('active');
+            });
             
-            // Mostrar slide actual
             slides[slideActual].classList.add('active');
             dots[slideActual].classList.add('active');
         }
 
-        // Cambiar slide (botones prev/next)
-        function cambiarSlide(n) {
-            slideActual += n;
-            mostrarSlide(slideActual);
-            reiniciarIntervalo();
-       
-        }
-
-        // Ir a slide específico (dots)
         function irASlide(n) {
             slideActual = n;
             mostrarSlide(slideActual);
             reiniciarIntervalo();
         }
 
-        // Cambio automático cada 5 segundos
         function iniciarCarrusel() {
-            intervaloCarrusel = setInterval(() => {
+            intervaloCarrusel = setInterval(function() {
                 slideActual++;
                 mostrarSlide(slideActual);
-            }, 5000); // Cambia cada 5 segundos
+            }, 5000);
         }
 
-        // Reiniciar intervalo al hacer clic manual
         function reiniciarIntervalo() {
             clearInterval(intervaloCarrusel);
             iniciarCarrusel();
         }
 
-        // Iniciar carrusel automático al cargar la página
-        window.addEventListener('load', () => {
+        window.addEventListener('load', function() {
             mostrarSlide(slideActual);
             iniciarCarrusel();
         });
     </script>
 </body>
-</html
+</html>
