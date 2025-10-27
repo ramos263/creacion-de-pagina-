@@ -1,30 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="descripcion de tu pagina web">
-    <meta name="author" content="ramos263">
-    <title>Document</title>
-    
-    <!-- VINCULA TU CSS EXTERNO -->
+    <meta name="description" content="Desarrollo web profesional, diseño de páginas web modernas y responsivas para negocios">
+    <meta name="keywords" content="diseño web, desarrollo web, páginas web, SEO, landing page">
+    <meta name="author" content="Tu Nombre Aquí">
+    <meta property="og:title" content="Tu Negocio - Desarrollo Web Profesional">
+    <meta property="og:description" content="Creamos sitios web modernos y funcionales para tu negocio">
+    <meta property="og:type" content="website">
+    <title>Tu Negocio - Desarrollo Web Profesional</title>
+
+    <!-- CSS EXTERNO -->
     <link rel="stylesheet" href="css/style.css">
-    
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-       (function(){
-          emailjs.init("TU_PUBLIC_KEY_AQUI"); // ← CAMBIA ESTO
-       })();
-    </script>
 </head>
 <body>
     <!-- HEADER -->
     <header>
         <nav>
-            <h1>logo o nombre del sitio</h1>
+            <h1>Creador de Páginas Web</h1>
             
-            <!-- MENÚ HAMBURGUESA -->
             <div class="hamburguesa" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -33,262 +28,128 @@
             
             <ul id="menu">
                 <li><a href="#inicio" onclick="toggleMenu()">Inicio</a></li>
-                
-                <!-- SERVICIOS CON DROPDOWN -->
-                <li>
-                    <a onclick="toggleDropdown()">Servicios ▼</a>
-                    <div id="dropdown" class="dropdown-menu">
-                        <a onclick="abrirModal('diseno')">Diseño Web</a>
-                        <a onclick="abrirModal('logo')">Diseño de Logo</a>
-                        <a onclick="abrirModal('seo')">SEO y Posicionamiento</a>
-                        <a onclick="abrirModal('mantenimiento')">Mantenimiento</a>
-                    </div>
-                </li>
-
-                <!-- CONTACTO CON DROPDOWN -->
-                <li>
-                    <a onclick="toggleDropdownContacto()">Contacto ▼</a>
-                    <div id="dropdown-contacto" class="dropdown-menu">
-                        <a href="https://wa.me/1234567890" target="_blank">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                            </svg>
-                            WhatsApp
-                        </a>
-                        <a href="https://facebook.com/tupagina" target="_blank">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                            Facebook
-                        </a>
-                        <a href="https://instagram.com/tupagina" target="_blank">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                            Instagram
-                        </a>
-                    </div>
-                </li>
+                <li><a href="#sobre-mi" onclick="toggleMenu()">Sobre Mí</a></li>
+                <li><a href="#servicios" onclick="toggleMenu()">Servicios</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- MODALES -->
-    <div id="modal-diseno" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="cerrarModal('diseno')">&times;</span>
-            <h3>Solicitar Diseño Web</h3>
-            <form onsubmit="enviarFormulario(event, 'diseno')">
-                <input type="text" name="nombre" placeholder="Tu nombre" required>
-                <input type="email" name="email" placeholder="Tu email" required>
-                <input type="tel" name="telefono" placeholder="Tu teléfono">
-                <textarea name="mensaje" placeholder="Describe lo que necesitas" rows="5" required></textarea>
-                <input type="text" name="presupuesto" placeholder="¿Cuál es tu presupuesto?">
-                <button type="submit">Enviar solicitud</button>
-            </form>
-            <div class="mensaje"></div>
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Transforma tu Negocio con una Web Profesional</h1>
+            <p>Diseño y desarrollo de páginas web modernas, responsivas y optimizadas para convertir visitantes en clientes</p>
+            <a href="#sobre-mi" class="cta-button">Conocer Más</a>
         </div>
-    </div>
+    </section>
 
-    <div id="modal-logo" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="cerrarModal('logo')">&times;</span>
-            <h3>Solicitar Diseño de Logo</h3>
-            <form onsubmit="enviarFormulario(event, 'logo')">
-                <input type="text" name="nombre" placeholder="Tu nombre" required>
-                <input type="email" name="email" placeholder="Tu email" required>
-                <input type="text" name="empresa" placeholder="Nombre de tu empresa">
-                <textarea name="mensaje" placeholder="Describe la idea" rows="5" required></textarea>
-                <button type="submit">Enviar solicitud</button>
-            </form>
-            <div class="mensaje"></div>
-        </div>
-    </div>
-
-    <div id="modal-seo" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="cerrarModal('seo')">&times;</span>
-            <h3>Solicitar SEO</h3>
-            <form onsubmit="enviarFormulario(event, 'seo')">
-                <input type="text" name="nombre" placeholder="Tu nombre" required>
-                <input type="email" name="email" placeholder="Tu email" required>
-                <input type="url" name="sitio_web" placeholder="URL de tu sitio">
-                <textarea name="mensaje" placeholder="Objetivos SEO" rows="5" required></textarea>
-                <button type="submit">Enviar solicitud</button>
-            </form>
-            <div class="mensaje"></div>
-        </div>
-    </div>
-
-    <div id="modal-mantenimiento" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="cerrarModal('mantenimiento')">&times;</span>
-            <h3>Solicitar Mantenimiento</h3>
-            <form onsubmit="enviarFormulario(event, 'mantenimiento')">
-                <input type="text" name="nombre" placeholder="Tu nombre" required>
-                <input type="email" name="email" placeholder="Tu email" required>
-                <input type="url" name="sitio_web" placeholder="URL de tu sitio">
-                <textarea name="mensaje" placeholder="¿Qué necesitas?" rows="5" required></textarea>
-                <button type="submit">Enviar solicitud</button>
-            </form>
-            <div class="mensaje"></div>
-        </div>
-    </div>
-
-    <!-- MAIN -->
+ <!-- MAIN -->
     <main>
-        <section id="inicio">
-            <h2>Bienvenido a Mi Portafolio</h2>
-            <p>Soy <strong>Ramos263</strong>, desarrollador web especializado en crear páginas profesionales y funcionales para negocios.</p>
-            <p>¿Necesitas una página web para tu negocio? Contáctame y transformo tu idea en realidad.</p>
-            
-            <!-- CARRUSEL -->
-            <div class="carrusel-container">
-                <div class="carrusel">
-                    <div class="carrusel-slide active">
-                        <img src="img/1.jpeg" alt="Vista Desktop">
-                        <p class="carrusel-caption">Vista en Desktop - Diseño profesional</p>
-                    </div>
-                    <div class="carrusel-slide">
-                        <img src="img/2.jpeg" alt="Vista Móvil">
-                        <p class="carrusel-caption">Vista en Móvil - Responsive</p>
-                    </div>
-                    <div class="carrusel-slide">
-                        <img src="img/3.jpeg" alt="Menú Dropdown">
-                        <p class="carrusel-caption">Menú Dropdown Interactivo</p>
-                    </div>
-                    <div class="carrusel-slide">
-                        <img src="img/4.jpeg" alt="Formularios">
-                        <p class="carrusel-caption">Formularios Funcionales</p>
-                    </div>
+        <!-- SOBRE MÍ -->
+        <section id="sobre-mi">
+            <h2 style="text-align: center; font-family: 'Poppins', sans-serif; color: #667eea; font-size: 2rem; margin-bottom: 2rem;">Sobre Mí</h2>
+            <div class="sobre-mi">
+                <div class="sobre-mi-imagen">
+                    <img src="img/1.jpeg" alt="Logo" style="max-width: 100%; height: auto; border-radius: 12px;">
+                </div>
+                <div class="sobre-mi-texto">
+                    <h2>Desarrollador Web Full Stack</h2>
+                    <p>Soy un desarrollador web apasionado por crear experiencias digitales excepcionales. Con más de 1 año de experiencia.</p>
+                    <p>Me especializo en crear sitios web que no solo se ven bien, sino que también convierten visitantes en clientes. Cada proyecto es una oportunidad para superar expectativas.</p>
                     
-                    <div class="carrusel-dots">
-                        <span class="dot active" onclick="irASlide(0)"></span>
-                        <span class="dot" onclick="irASlide(1)"></span>
-                        <span class="dot" onclick="irASlide(2)"></span>
-                        <span class="dot" onclick="irASlide(3)"></span>
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #333;">Mis Habilidades</h3>
+                    <div class="habilidades">
+                        <div class="habilidad">HTML5 & CSS3</div>
+                        <div class="habilidad">JavaScript & React</div>
+                        <div class="habilidad">Diseño Responsive</div>
+                        <div class="habilidad">SEO Optimización</div>
+                        <div class="habilidad">WordPress & CMS</div>
+                        <div class="habilidad">UX/UI Design</div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- SERVICIOS -->
+        <section id="servicios">
+            <h2 style="text-align: center; font-family: 'Poppins', sans-serif; color: #667eea; font-size: 2rem;">Servicios Profesionales</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">Soluciones completas para tu presencia digital</p>
+            
+            <div class="servicios-grid">
+                <div class="servicio-card">
+                    <div class="servicio-icon">🎨</div>
+                    <h3>Diseño Web</h3>
+                    <p>Diseños modernos, atractivos y funcionales que captan la atención de tus clientes.</p>
+                    <a href="#" onclick="abrirModal('diseno'); return false;" class="btn-servicio">Solicitar</a>
+                </div>
+                
+                <div class="servicio-card">
+                    <div class="servicio-icon">🚀</div>
+                    <h3>Diseño de Logo</h3>
+                    <p>Identidad visual única que refleja la esencia de tu marca y negocio.</p>
+                    <a href="#" onclick="abrirModal('logo'); return false;" class="btn-servicio">Solicitar</a>
+                </div>
+                
+                <div class="servicio-card">
+                    <div class="servicio-icon">📈</div>
+                    <h3>SEO & Posicionamiento</h3>
+                    <p>Optimización para aparecer en los primeros resultados de Google y atraer más tráfico.</p>
+                    <a href="#" onclick="abrirModal('seo'); return false;" class="btn-servicio">Solicitar</a>
+                </div>
+                
+                <div class="servicio-card">
+                    <div class="servicio-icon">🔧</div>
+                    <h3>Mantenimiento Web</h3>
+                    <p>Actualizaciones, seguridad y soporte técnico continuo para tu sitio web.</p>
+                    <a href="#" onclick="abrirModal('mantenimiento'); return false;" class="btn-servicio">Solicitar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- LLAMADA A LA ACCIÓN FINAL -->
+        <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 12px; text-align: center;">
+            <h2 style="color: white; font-family: 'Poppins', sans-serif; font-size: 2rem; margin-bottom: 1rem;">¿Listo para llevar tu negocio al siguiente nivel?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: rgba(255,255,255,0.9);">Solicita cualquiera de nuestros servicios usando los formularios de arriba</p>
+            <a href="#servicios" class="cta-button" style="background-color: white; color: #667eea;">Ver Servicios</a>
         </section>
     </main>
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2025 ramos263. Todos los derechos reservados.</p>
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: white; margin-bottom: 1rem;">Tu Negocio</h3>
+                    <p style="color: rgba(255,255,255,0.8);">Desarrollo web profesional para negocios que quieren crecer en el mundo digital.</p>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem;">Enlaces Rápidos</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#inicio" style="color: rgba(255,255,255,0.8); text-decoration: none;">Inicio</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#sobre-mi" style="color: rgba(255,255,255,0.8); text-decoration: none;">Sobre Mí</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#servicios" style="color: rgba(255,255,255,0.8); text-decoration: none;">Servicios</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem;">Redes Sociales</h4>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="color: rgba(255,255,255,0.8); margin-right: 1rem; text-decoration: none;">Facebook</a>
+                        <a href="#" style="color: rgba(255,255,255,0.8); margin-right: 1rem; text-decoration: none;">Instagram</a>
+                        <a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1.5rem; text-align: center;">
+                <p style="color: rgba(255,255,255,0.8);">&copy; 2025 Tu Negocio. Todos los derechos reservados.</p>
+            </div>
+        </div>
     </footer>
 
-    <!-- ✅ AGREGA TODO ESTE JAVASCRIPT AQUÍ -->
-    <script>
-        // TOGGLE MENÚ HAMBURGUESA
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        }
+    <!-- BOTÓN SCROLL TO TOP -->
+    <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        ↑
+    </div>
 
-        // TOGGLE DROPDOWN SERVICIOS
-        function toggleDropdown() {
-            const dropdown = document.getElementById('dropdown');
-            dropdown.classList.toggle('active');
-            
-            const dropdownContacto = document.getElementById('dropdown-contacto');
-            if (dropdownContacto) dropdownContacto.classList.remove('active');
-        }
-
-        // TOGGLE DROPDOWN CONTACTO
-        function toggleDropdownContacto() {
-            const dropdown = document.getElementById('dropdown-contacto');
-            dropdown.classList.toggle('active');
-            
-            const dropdownServicios = document.getElementById('dropdown');
-            if (dropdownServicios) dropdownServicios.classList.remove('active');
-        }
-
-        // ABRIR MODAL
-        function abrirModal(servicio) {
-            const modal = document.getElementById('modal-' + servicio);
-            modal.classList.add('active');
-            
-            const dropdown = document.getElementById('dropdown');
-            dropdown.classList.remove('active');
-        }
-
-        // CERRAR MODAL
-        function cerrarModal(servicio) {
-            const modal = document.getElementById('modal-' + servicio);
-            modal.classList.remove('active');
-        }
-
-        // CERRAR MODAL AL HACER CLIC FUERA
-        window.addEventListener('click', function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.classList.remove('active');
-            }
-        });
-
-        // ENVIAR FORMULARIO
-        function enviarFormulario(event, servicio) {
-            event.preventDefault();
-
-            const modal = document.getElementById('modal-' + servicio);
-            const form = modal.querySelector('form');
-            const mensaje = modal.querySelector('.mensaje');
-
-            mensaje.textContent = '¡Solicitud enviada correctamente! Te contactaremos pronto.';
-            mensaje.classList.add('mostrar');
-
-            form.reset();
-
-            setTimeout(function() {
-                mensaje.classList.remove('mostrar');
-                cerrarModal(servicio);
-            }, 3000);
-        }
-
-        // CARRUSEL
-        let slideActual = 0;
-        let intervaloCarrusel;
-
-        function mostrarSlide(n) {
-            const slides = document.querySelectorAll('.carrusel-slide');
-            const dots = document.querySelectorAll('.dot');
-            
-            if (n >= slides.length) { slideActual = 0; }
-            if (n < 0) { slideActual = slides.length - 1; }
-            
-            slides.forEach(function(slide) {
-                slide.classList.remove('active');
-            });
-            dots.forEach(function(dot) {
-                dot.classList.remove('active');
-            });
-            
-            slides[slideActual].classList.add('active');
-            dots[slideActual].classList.add('active');
-        }
-
-        function irASlide(n) {
-            slideActual = n;
-            mostrarSlide(slideActual);
-            reiniciarIntervalo();
-        }
-
-        function iniciarCarrusel() {
-            intervaloCarrusel = setInterval(function() {
-                slideActual++;
-                mostrarSlide(slideActual);
-            }, 5000);
-        }
-
-        function reiniciarIntervalo() {
-            clearInterval(intervaloCarrusel);
-            iniciarCarrusel();
-        }
-
-        window.addEventListener('load', function() {
-            mostrarSlide(slideActual);
-            iniciarCarrusel();
-        });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
