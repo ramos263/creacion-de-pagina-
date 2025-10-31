@@ -272,13 +272,11 @@ img {
     color: white;
     font-size: 4rem;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
 
 .sobre-mi-imagen:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
 }
 
 .sobre-mi-imagen img {
@@ -705,8 +703,12 @@ footer {
     }
 
     .sobre-mi-imagen {
-        height: 400px;
+        height: 300px;
         width: 100%;
+    }
+
+    .habilidades {
+        grid-template-columns: 1fr;
     }
 
     /* Estadísticas responsive */
