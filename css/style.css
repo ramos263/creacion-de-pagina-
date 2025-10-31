@@ -1,7 +1,7 @@
 /* IMPORTAR FUENTES PROFESIONALES */
-/* Opción 1: Moderna y Corporativa (RECOMENDADA) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap');
 
+/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -19,7 +19,7 @@ html, body {
 
 /* BODY */
 body {
-    font-family: 'Open Sans', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
@@ -47,9 +47,9 @@ nav {
 }
 
 nav h1 {
-    font-family: 'Playwrite DE Grund Guides', cursive;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.8rem;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 nav ul {
@@ -155,10 +155,11 @@ nav a:hover {
 }
 
 .hero h1 {
-    font-family: 'Playwrite DE Grund Guides', cursive;
+    font-family: 'Poppins', sans-serif;
     font-size: 2.5rem;
     margin-bottom: 1rem;
     animation: fadeInDown 1s;
+    font-weight: 700;
 }
 
 .hero p {
@@ -202,11 +203,11 @@ section {
 }
 
 h2 {
-    font-family: 'Playwrite DE Grund Guides', cursive;
+    font-family: 'Poppins', sans-serif;
     color: #333;
     margin-bottom: 1rem;
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 p {
@@ -261,9 +262,8 @@ img {
 }
 
 .sobre-mi-imagen {
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-    width: 90%;
-    height: 390px;
+    width: 100%;
+    height: 400px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 12px;
     display: flex;
@@ -271,9 +271,25 @@ img {
     justify-content: center;
     color: white;
     font-size: 4rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
+
 .sobre-mi-imagen:hover {
-    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.sobre-mi-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.sobre-mi-imagen:hover img {
+    transform: scale(1.05);
 }
 
 .sobre-mi-texto h2 {
@@ -404,10 +420,10 @@ img {
 }
 
 .proyecto-info h3 {
-    font-family: 'Playwrite DE Grund Guides', cursive;
+    font-family: 'Poppins', sans-serif;
     color: #667eea;
     margin-bottom: 0.5rem;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .proyecto-info p {
@@ -519,7 +535,7 @@ input, textarea {
     padding: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-family: 'Open Sans', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-size: 1rem;
 }
 
@@ -538,7 +554,8 @@ button {
     font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
 }
 
 button:hover {
@@ -589,10 +606,10 @@ button:hover {
 }
 
 .modal-content h3 {
-    font-family: 'Playwrite DE Grund Guides', cursive;
+    font-family: 'Poppins', sans-serif;
     color: #333;
     margin-bottom: 1.5rem;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 /* MENSAJE */
@@ -689,6 +706,7 @@ footer {
 
     .sobre-mi-imagen {
         height: 300px;
+        width: 100%;
     }
 
     .habilidades {

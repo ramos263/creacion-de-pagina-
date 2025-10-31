@@ -8,53 +8,30 @@ function toggleMenu() {
     menu.classList.toggle('active');
 }
 
-// TOGGLE DROPDOWN SERVICIOS
-function toggleDropdown() {
-    const dropdown = document.getElementById('dropdown');
-    dropdown.classList.toggle('active');
+// CERRAR MENÚ AL HACER CLIC FUERA
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('menu');
+    const hamburguesa = document.querySelector('.hamburguesa');
+    const nav = document.querySelector('nav');
     
-    const dropdownContacto = document.getElementById('dropdown-contacto');
-    if (dropdownContacto) dropdownContacto.classList.remove('active');
-}
-
-// TOGGLE DROPDOWN CONTACTO
-function toggleDropdownContacto() {
-    const dropdown = document.getElementById('dropdown-contacto');
-    dropdown.classList.toggle('active');
-    
-    const dropdownServicios = document.getElementById('dropdown');
-    if (dropdownServicios) dropdownServicios.classList.remove('active');
-    
-}
-
-// ==========================================
-// FUNCIONES DE MODALES
-// ==========================================
-
-// ABRIR MODAL
-function abrirModal(servicio) {
-    const modal = document.getElementById('modal-' + servicio);
-    modal.classList.add('active');
-    
-    const dropdown = document.getElementById('dropdown');
-    if (dropdown) dropdown.classList.remove('active');
-}
-
-// CERRAR MODAL
-function cerrarModal(servicio) {
-    const modal = document.getElementById('modal-' + servicio);
-    modal.classList.remove('active');
-}
-
-// CERRAR MODAL AL HACER CLIC FUERA
-window.addEventListener('click', function(event) {
-    if (event.target.classList.contains('modal')) {
-        event.target.classList.remove('active');
+    // Si el menú está abierto y el clic fue fuera del menú y hamburguesa
+    if (menu.classList.contains('active')) {
+        if (!nav.contains(event.target)) {
+            menu.classList.remove('active');
+        }
     }
 });
 
+// ==========================================
+// SCROLL TO TOP
+// ==========================================
 
-
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 
 // MOSTRAR/OCULTAR BOTÓN SCROLL TO TOP
 window.addEventListener('scroll', function() {
@@ -104,5 +81,3 @@ window.addEventListener('load', function() {
         observer.observe(section);
     });
 });
-
-
