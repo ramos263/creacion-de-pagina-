@@ -705,12 +705,8 @@ footer {
     }
 
     .sobre-mi-imagen {
-        height: 300px;
+        height: 400px;
         width: 100%;
-    }
-
-    .habilidades {
-        grid-template-columns: 1fr;
     }
 
     /* Estadísticas responsive */
